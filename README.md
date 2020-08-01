@@ -53,6 +53,6 @@ execute which will install all dependencies and start the necessary services.
   
     -currently implemented a share_limit - doesnt capture the requirement
   
-    -further clarification of requirement would be helpful because rate limit if 5 per minute but asked remaining limit for duration of an hour
+    -further clarification of requirement would be helpful because rate limit is 5 per minute but asked remaining limit for duration of an hour
   
     -possible solution for multiple rate limits could be different storage - currently exploring

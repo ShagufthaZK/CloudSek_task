@@ -39,10 +39,6 @@ def see_remaining_limit():
     return str(window[1])
 
 
-'''
-@limiter.request_filter
-def not_call_api_request():
-    return "/call_api" not in request.url
-'''
+
 
 

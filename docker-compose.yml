@@ -1,0 +1,37 @@
+version: '2.2'
+services:
+  rate_limiter:
+    build:  ./service_rate_limiting/
+    depends_on:
+      - db
+      - api_a
+    environment:
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/user_db
+      SECRET_KEY: 9OLWxND4o83j4K4iuopO
+    ports:
+    - 5000:5000
+    volumes:
+    - '/docker-compose-v2'
+    #TODO: what to do with this?
+    restart: always
+
+  db:
+    container_name: 'postgres_db'
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      #POSTGRES_DB: user_db
+    build: ./database-image/
+    ports:
+      - 5432:5432
+    restart: always
+
+  api_a:
+    build: ./api_a/
+    command: uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+    volumes:
+      - ./api_a/:/api_a/
+    ports:
+      - 8000:8000
+    restart: always
+

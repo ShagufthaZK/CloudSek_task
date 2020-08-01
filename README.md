@@ -45,6 +45,8 @@ execute which will install all dependencies and start the necessary services.
 
 -[ip]:5000/get_rand_num provides access to api_a - add authorization so that only rate limiting service can access it
 
+- front end not fully implemented. current frontend is borrowed.
+
 -flask-limiter has been used to provide rate limiting functionality with in-memory storage
 
     -[ip]:8000/see_remaining_limit is unable to accurately track requests remaining per hour since the granularity of "5 per minute" for /call_api is finer and hence was what was accessible in code

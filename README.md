@@ -41,20 +41,11 @@ execute which will install all dependencies and start the necessary services.
 
 -[ip]:8000/see_remaining_limit
 
-## Pending/Improvement in tasks 
+## Improvement in tasks 
 
-**not implemented** - currently working on it
+**pending**
 
 - front end not fully implemented. current frontend is borrowed.
 
--flask-limiter has been used to provide rate limiting functionality with in-memory storage
+-ut
 
-    -[ip]:8000/see_remaining_limit is unable to accurately track requests remaining per hour since the granularity of "5 per minute" for /call_api is finer and hence was what was accessible in code
-  
-    -also not a viable idea to store remaining requests in a variable - wont get updated dynamically
-  
-    -currently implemented a share_limit - doesnt capture the requirement
-  
-    -further clarification of requirement would be helpful because rate limit is 5 per minute but asked remaining limit for duration of an hour
-  
-    -possible solution for multiple rate limits could be different storage - currently exploring

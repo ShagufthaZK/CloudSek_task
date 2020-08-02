@@ -5,16 +5,18 @@ from flask_migrate import Migrate
 from flask_limiter import Limiter, HEADERS
 from flask_limiter.util import get_remote_address
 import os
+import redis
 
 
 db = SQLAlchemy()
-limiter = Limiter(app=None, headers_enabled=True, key_func=get_remote_address, default_limits=["200 per day"])
+limiter = Limiter(app=None, headers_enabled=True, key_func=get_remote_address, default_limits=["200 per day"],
+                  storage_uri="redis://redis:6379", key_prefix=os.getenv("KEY_PREFIX"))
 limiter.header_mapping = {
     HEADERS.LIMIT: "X-My-Limit",
     HEADERS.RESET: "X-My-Reset",
     HEADERS.REMAINING: "X-My-Remaining"
 }
-
+r = redis.Redis(host="redis", port="6379")
 
 def create_app():
     app = Flask(__name__)

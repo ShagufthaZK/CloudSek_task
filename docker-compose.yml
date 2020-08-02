@@ -5,9 +5,11 @@ services:
     depends_on:
       - db
       - api_a
+      - redis
     environment:
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/user_db
       SECRET_KEY: 9OLWxND4o83j4K4iuopO
+      KEY_PREFIX: limiter_service
     ports:
     - 5000:5000
     volumes:
@@ -34,4 +36,9 @@ services:
     expose:
       - 8000
     restart: always
+
+  redis:
+    image: redis
+    restart: always
+
 

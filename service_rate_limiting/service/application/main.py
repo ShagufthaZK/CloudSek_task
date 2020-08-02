@@ -1,16 +1,16 @@
 from flask import Blueprint, g, make_response, jsonify
 from flask_login import login_required, current_user
-from . import limiter
+from . import limiter, r
 import requests
+import os
 
 main = Blueprint('main', __name__)
-shared_limit = limiter.shared_limit("300 per hour", scope="hello")
 
 
 @main.route('/call_api')
 @login_required
 @limiter.limit("5 per minute;300 per hour", key_func=lambda: current_user.user_name)
-@shared_limit
+#@shared_limit
 def call_api():
     return requests.get("http://api_a:8000/get_rand_num").content
 
@@ -22,10 +22,13 @@ def ratelimit_handler(e):
 
 @main.route('/see_remaining_limit')
 @login_required
-@shared_limit
 def see_remaining_limit():
-    window = limiter.limiter.get_window_stats(*getattr(g, 'view_rate_limit', None))
-    return str(window[1])
+    key = "LIMITER/"+os.getenv("KEY_PREFIX")+"/"+current_user.user_name+"/main.call_api/300/1/hour"
+    y = r.get(key)
+    #window = limiter.limiter.get_window_stats(*getattr(g, 'view_rate_limit', None))
+    #TODO: remove as much hardcoding as possible
+    return str(300-int(y.decode()))
+
 
 
 

@@ -35,6 +35,8 @@ execute which will install all dependencies and start the necessary services.
 
 -[ip]:8000/signup
 
+-[ip]:8000/logout
+
 -[ip]:8000/call_api
 
 -[ip]:8000/see_remaining_limit
@@ -42,8 +44,6 @@ execute which will install all dependencies and start the necessary services.
 ## Pending/Improvement in tasks 
 
 **not implemented** - currently working on it
-
--[ip]:5000/get_rand_num provides access to api_a - add authorization so that only rate limiting service can access it
 
 - front end not fully implemented. current frontend is borrowed.
 

@@ -1,21 +1,10 @@
-from flask import Blueprint, render_template, request, g, make_response, jsonify
-from flask_login import login_required, current_user
+from flask import Blueprint, g, make_response, jsonify
+from flask_login import login_required
 from . import limiter
 import requests
 
 main = Blueprint('main', __name__)
 shared_limit = limiter.shared_limit("300 per hour", scope="hello")
-
-
-@main.route('/')
-def index():
-    return render_template('index.html')
-
-
-@main.route('/profile')
-@login_required
-def profile():
-    return render_template('profile.html', name=current_user.user_name)
 
 
 @main.route('/call_api')

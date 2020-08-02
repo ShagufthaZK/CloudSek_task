@@ -9,7 +9,7 @@ shared_limit = limiter.shared_limit("300 per hour", scope="hello")
 
 @main.route('/call_api')
 @login_required
-@limiter.limit("5 per minute;300 per hour",key_func=lambda: current_user.user_name)
+@limiter.limit("5 per minute;300 per hour", key_func=lambda: current_user.user_name)
 @shared_limit
 def call_api():
     return requests.get("http://api_a:8000/get_rand_num").content

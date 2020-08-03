@@ -10,6 +10,7 @@ services:
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/user_db
       SECRET_KEY: 9OLWxND4o83j4K4iuopO
       KEY_PREFIX: limiter_service
+      HOUR_LIMIT: 300
     ports:
     - 5000:5000
     volumes:

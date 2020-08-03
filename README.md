@@ -45,7 +45,5 @@ execute which will install all dependencies and start the necessary services.
 
 **pending**
 
-- front end not fully implemented. current frontend is borrowed.
-
 -ut
 

@@ -47,5 +47,7 @@ execute which will install all dependencies and start the necessary services.
 
 - front end not fully implemented. current frontend is borrowed.
 
+**please see rest_api branch for implementation with no frontend**
+
 -ut
 
